@@ -1,0 +1,26 @@
+{
+    "sourceFile": "resources/views/auth/register.blade.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1655626941771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1655627113349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <x-guest-layout>\n     <x-auth-card>\n         <x-slot name=\"logo\">\n             <a href=\"/\">\n-                <x-application-logo class=\"w-20 h-20 fill-current text-red-500\" />\n+                <x-application-logo class=\"w-20 h-20 fill-current text-blue-500\" />\n             </a>\n         </x-slot>\n \n         <!-- Validation Errors -->\n"
+                },
+                {
+                    "date": 1655627797738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <x-guest-layout>\n     <x-auth-card>\n         <x-slot name=\"logo\">\n             <a href=\"/\">\n-                <x-application-logo class=\"w-20 h-20 fill-current text-blue-500\" />\n+                <x-application-logo class=\"w-20 h-20 fill-current text-red-500\" />\n             </a>\n         </x-slot>\n \n         <!-- Validation Errors -->\n"
+                }
+            ],
+            "date": 1655626941771,
+            "name": "Commit-0",
+            "content": "<x-guest-layout>\n    <x-auth-card>\n        <x-slot name=\"logo\">\n            <a href=\"/\">\n                <x-application-logo class=\"w-20 h-20 fill-current text-red-500\" />\n            </a>\n        </x-slot>\n\n        <!-- Validation Errors -->\n        <x-auth-validation-errors class=\"mb-4\" :errors=\"$errors\" />\n\n        <form method=\"POST\" action=\"{{ route('register') }}\">\n            @csrf\n\n            <!-- Name -->\n            <div>\n                <x-label for=\"name\" :value=\"__('Name')\" />\n\n                <x-input id=\"name\" class=\"block mt-1 w-full\" type=\"text\" name=\"name\" :value=\"old('name')\" required autofocus />\n            </div>\n\n            <!-- Email Address -->\n            <div class=\"mt-4\">\n                <x-label for=\"email\" :value=\"__('Email')\" />\n\n                <x-input id=\"email\" class=\"block mt-1 w-full\" type=\"email\" name=\"email\" :value=\"old('email')\" required />\n            </div>\n\n            <!-- Password -->\n            <div class=\"mt-4\">\n                <x-label for=\"password\" :value=\"__('Password')\" />\n\n                <x-input id=\"password\" class=\"block mt-1 w-full\"\n                                type=\"password\"\n                                name=\"password\"\n                                required autocomplete=\"new-password\" />\n            </div>\n\n            <!-- Confirm Password -->\n            <div class=\"mt-4\">\n                <x-label for=\"password_confirmation\" :value=\"__('Confirm Password')\" />\n\n                <x-input id=\"password_confirmation\" class=\"block mt-1 w-full\"\n                                type=\"password\"\n                                name=\"password_confirmation\" required />\n            </div>\n\n            <div class=\"flex items-center justify-end mt-4\">\n                <a class=\"underline text-sm text-gray-600 hover:text-gray-900\" href=\"{{ route('login') }}\">\n                    {{ __('Already registered?') }}\n                </a>\n\n                <x-button class=\"ml-4\">\n                    {{ __('Register') }}\n                </x-button>\n            </div>\n        </form>\n    </x-auth-card>\n</x-guest-layout>\n"
+        }
+    ]
+}
