@@ -11,7 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     @foreach ($plans as $plan)
                         <div>
-                            <a href="{{ $plan->slug }}">{{ $plan->title }}</a>
+                            <a href="{{ route('subscriptions', ['plan'=>$plan->slug]) }}">{{ $plan->title }}</a>
                         </div>
                     @endforeach
                 </div>

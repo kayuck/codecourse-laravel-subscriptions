@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1655687711243,
@@ -20,6 +20,34 @@
                 {
                     "date": 1655687982434,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     return view('dashboard');\n })->middleware(['auth'])->name('dashboard');\n \n \n-Route::prefix('plans')group(function () {\n+Route::prefix('plans')->group(function () {\n     Route::get('/', [PlanController::class, 'index'])->name('plans');\n });\n \n \n"
+                },
+                {
+                    "date": 1655860386032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n <?php\n \n use App\\Http\\Controllers\\Subscriptions\\PlanController;\n+use App\\Http\\Controllers\\Subscriptions\\SubscriptionController;\n use Illuminate\\Support\\Facades\\Route;\n \n /*\n |--------------------------------------------------------------------------\n@@ -22,10 +23,9 @@\n     return view('dashboard');\n })->middleware(['auth'])->name('dashboard');\n \n \n-Route::prefix('plans')->group(function () {\n-    Route::get('/', [PlanController::class, 'index'])->name('plans');\n-});\n+Route::get('plans', [PlanController::class, 'index'])->name('plans');\n+Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions');\n \n \n-require __DIR__.'/auth.php';\n+require __DIR__ . '/auth.php';\n"
+                },
+                {
+                    "date": 1655865974960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     return view('dashboard');\n })->middleware(['auth'])->name('dashboard');\n \n \n-Route::get('plans', [PlanController::class, 'index'])->name('plans');\n+Route::get('/plans', [PlanController::class, 'index'])->name('plans');\n Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions');\n \n \n require __DIR__ . '/auth.php';\n"
+                },
+                {
+                    "date": 1655865982069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     return view('dashboard');\n })->middleware(['auth'])->name('dashboard');\n \n \n-Route::get('/plans', [PlanController::class, 'index'])->name('plans');\n+Route::get('/plan', [PlanController::class, 'index'])->name('plans');\n Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions');\n \n \n require __DIR__ . '/auth.php';\n"
+                },
+                {
+                    "date": 1655866062122,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     return view('dashboard');\n })->middleware(['auth'])->name('dashboard');\n \n \n-Route::get('/plan', [PlanController::class, 'index'])->name('plans');\n+Route::get('/plans', [PlanController::class, 'index'])->name('subscriptions.plans');\n Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions');\n \n \n require __DIR__ . '/auth.php';\n"
+                },
+                {
+                    "date": 1655944664913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,14 +18,12 @@\n Route::get('/', function () {\n     return view('welcome');\n });\n \n-Route::get('/dashboard', function () {\n-    return view('dashboard');\n-})->middleware(['auth'])->name('dashboard');\n \n+Route::middleware(['auth'])->group(function () {\n+    Route::get('/dashboard', function () {  return view('dashboard');})->name('dashboard');\n+    Route::get('/plans', [PlanController::class, 'index'])->name('subscriptions.plans');\n+    Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions');\n+});\n \n-Route::get('/plans', [PlanController::class, 'index'])->name('subscriptions.plans');\n-Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions');\n-\n-\n require __DIR__ . '/auth.php';\n"
+                },
+                {
+                    "date": 1655948161751,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,10 +20,13 @@\n });\n \n \n Route::middleware(['auth'])->group(function () {\n-    Route::get('/dashboard', function () {  return view('dashboard');})->name('dashboard');\n+    Route::get('/dashboard', function () {\n+        return view('dashboard');\n+    })->name('dashboard');\n     Route::get('/plans', [PlanController::class, 'index'])->name('subscriptions.plans');\n     Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions');\n+    Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions');\n });\n \n require __DIR__ . '/auth.php';\n"
+                },
+                {
+                    "date": 1655948167998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,8 @@\n         return view('dashboard');\n     })->name('dashboard');\n     Route::get('/plans', [PlanController::class, 'index'])->name('subscriptions.plans');\n     Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions');\n-    Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions');\n+    Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions.store');\n });\n \n require __DIR__ . '/auth.php';\n"
                 }
             ],
             "date": 1655687711243,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1655689014307,
@@ -16,6 +16,10 @@
                 {
                     "date": 1655689051833,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n                     <x-nav-link :href=\"route('dashboard')\" :active=\"request()->routeIs('dashboard')\">\n                         {{ __('Dashboard') }}\n                     </x-nav-link>\n                     <x-nav-link :href=\"route('plans')\" :active=\"request()->routeIs('plans')\">\n-                        {{ __('plans') }}\n+                        {{ __('Plans') }}\n                     </x-nav-link>\n                 </div>\n             </div>\n \n"
+                },
+                {
+                    "date": 1655866048804,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n                 <div class=\"hidden space-x-8 sm:-my-px sm:ml-10 sm:flex\">\n                     <x-nav-link :href=\"route('dashboard')\" :active=\"request()->routeIs('dashboard')\">\n                         {{ __('Dashboard') }}\n                     </x-nav-link>\n-                    <x-nav-link :href=\"route('plans')\" :active=\"request()->routeIs('plans')\">\n+                    <x-nav-link :href=\"route('subscriptions.plans')\" :active=\"request()->routeIs('subscriptions.plans')\">\n                         {{ __('Plans') }}\n                     </x-nav-link>\n                 </div>\n             </div>\n"
                 }
             ],
             "date": 1655689014307,

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Subscriptions\PlanController;
+use App\Http\Controllers\Subscriptions\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
-
-Route::prefix('plans')->group(function () {
-    Route::get('/', [PlanController::class, 'index'])->name('plans');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    Route::get('/plans', [PlanController::class, 'index'])->name('subscriptions.plans');
+    Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions');
+    Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions.store');
 });
 
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1655686993363,
@@ -28,6 +28,10 @@
                 {
                     "date": 1655689523510,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n             <div class=\"bg-white overflow-hidden shadow-sm sm:rounded-lg\">\n                 <div class=\"p-6 bg-white border-b border-gray-200\">\n                     @foreach ($plans as $plan)\n                         <div>\n-                            {{ $plan->title }}\n+                            <a href=\"{{ $plan->slug }}\">{{ $plan->title }}</a>\n                         </div>\n                     @endforeach\n                 </div>\n             </div>\n"
+                },
+                {
+                    "date": 1655866208076,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n             <div class=\"bg-white overflow-hidden shadow-sm sm:rounded-lg\">\n                 <div class=\"p-6 bg-white border-b border-gray-200\">\n                     @foreach ($plans as $plan)\n                         <div>\n-                            <a href=\"{{ $plan->slug }}\">{{ $plan->title }}</a>\n+                            <a href=\"{{ route('subscriptions', ['plan'=>$plan->slug]) }}\">{{ $plan->title }}</a>\n                         </div>\n                     @endforeach\n                 </div>\n             </div>\n"
                 }
             ],
             "date": 1655686993363,
