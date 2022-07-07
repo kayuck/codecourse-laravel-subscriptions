@@ -5,6 +5,7 @@ use App\Http\Controllers\Subscriptions\PlanController;
 use App\Http\Controllers\Subscriptions\SubscriptionController;
 use App\Http\Controllers\Account\Subscriptions\SubscriptionController as AccountSubscriptionController;
 use App\Http\Controllers\Account\Subscriptions\SubscriptionCancelController as AccountSubscriptionCancelController;
+use App\Http\Controllers\Account\Subscriptions\SubscriptionResumeController as AccountSubscriptionResumeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,8 +38,12 @@ Route::middleware(['auth'])->group(function () {
         Route::group(['prefix' => 'subscriptions'], function () {
             /* AccountSubscriptionController…上のuseのとこ参照 */
             Route::get('/', [AccountSubscriptionController::class, 'index'])->name('account.subscriptions');
+
             Route::get('/cancel', [AccountSubscriptionCancelController::class, 'index'])->name('account.subscriptions.cancel');
             Route::post('/cancel', [AccountSubscriptionCancelController::class, 'store']);
+
+            Route::get('/resume', [AccountSubscriptionResumeController::class, 'index'])->name('account.subscriptions.resume');
+            Route::post('/resume', [AccountSubscriptionResumeController::class, 'store']);
         });
     });
 });

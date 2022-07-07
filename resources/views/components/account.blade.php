@@ -9,6 +9,9 @@
                 @if (!auth()->user()->subscription('default')->cancelled())
                     <li class="text-indigo-500"><a href="{{ route('account.subscriptions.cancel') }}">Cancel subscription</a></li>
                 @endif
+                @if (auth()->user()->subscription('default')->cancelled())
+                    <li class="text-indigo-500"><a href="{{ route('account.subscriptions.resume') }}">Resume subscription</a></li>
+                @endif
             @endif
 
         </ul>
