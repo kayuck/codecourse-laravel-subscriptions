@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Subscriptions\PlanController;
 use App\Http\Controllers\Subscriptions\SubscriptionController;
+use App\Http\Controllers\Account\Subscriptions\SubscriptionController as AccountSubscriptionController;
+use App\Http\Controllers\Account\Subscriptions\SubscriptionCancelController as AccountSubscriptionCancelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +30,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/plans', [PlanController::class, 'index'])->name('subscriptions.plans');
     Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions');
     Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions.store');
+
+    Route::group(['prefix' => 'account'], function () {
+        Route::get('/', [AccountController::class, 'index'])->name('account');
+
+        Route::group(['prefix' => 'subscriptions'], function () {
+            /* AccountSubscriptionController…上のuseのとこ参照 */
+            Route::get('/', [AccountSubscriptionController::class, 'index'])->name('account.subscriptions');
+            Route::get('/cancel', [AccountSubscriptionCancelController::class, 'index'])->name('account.subscriptions.cancel');
+            Route::post('/cancel', [AccountSubscriptionCancelController::class, 'store']);
+        });
+    });
 });
 
 require __DIR__ . '/auth.php';
