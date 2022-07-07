@@ -6,12 +6,15 @@
         <ul class="mb-4">
             <li class="text-indigo-500"><a href="{{ route('account.subscriptions') }}">Subscription</a></li>
             @if (auth()->user()->subscribed())
-                @if (!auth()->user()->subscription('default')->cancelled())
+                @can('cancel',
+                    auth()->user()->subscription('default'),)
                     <li class="text-indigo-500"><a href="{{ route('account.subscriptions.cancel') }}">Cancel subscription</a></li>
-                @endif
-                @if (auth()->user()->subscription('default')->cancelled())
+                @endcan
+
+                @can('resume',
+                    auth()->user()->subscription('default'),)
                     <li class="text-indigo-500"><a href="{{ route('account.subscriptions.resume') }}">Resume subscription</a></li>
-                @endif
+                @endcan
             @endif
 
         </ul>
