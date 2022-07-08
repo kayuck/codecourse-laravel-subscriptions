@@ -29,8 +29,12 @@ Route::middleware(['auth'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
     Route::get('/plans', [PlanController::class, 'index'])->name('subscriptions.plans');
-    Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions');
-    Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions.store');
+
+
+    Route::middleware(['not.subscribed'])->group(function () {
+        Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions');
+        Route::post('/subscriptions', [SubscriptionController::class, 'store'])->name('subscriptions.store');
+    });
 
     Route::group(['prefix' => 'account'], function () {
         Route::get('/', [AccountController::class, 'index'])->name('account');
@@ -39,13 +43,16 @@ Route::middleware(['auth'])->group(function () {
             /* AccountSubscriptionController…上のuseのとこ参照 */
             Route::get('/', [AccountSubscriptionController::class, 'index'])->name('account.subscriptions');
 
-            Route::get('/cancel', [AccountSubscriptionCancelController::class, 'index'])->name('account.subscriptions.cancel');
-            Route::post('/cancel', [AccountSubscriptionCancelController::class, 'store']);
+            Route::middleware(['subscribed'])->group(function () {
+                Route::get('/cancel', [AccountSubscriptionCancelController::class, 'index'])->name('account.subscriptions.cancel');
+                Route::post('/cancel', [AccountSubscriptionCancelController::class, 'store']);
 
-            Route::get('/resume', [AccountSubscriptionResumeController::class, 'index'])->name('account.subscriptions.resume');
-            Route::post('/resume', [AccountSubscriptionResumeController::class, 'store']);
+                Route::get('/resume', [AccountSubscriptionResumeController::class, 'index'])->name('account.subscriptions.resume');
+                Route::post('/resume', [AccountSubscriptionResumeController::class, 'store']);
+            });
         });
     });
+
 });
 
 require __DIR__ . '/auth.php';
