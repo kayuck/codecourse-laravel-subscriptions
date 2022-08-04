@@ -6,6 +6,7 @@ use App\Http\Controllers\Subscriptions\SubscriptionController;
 use App\Http\Controllers\Account\Subscriptions\SubscriptionController as AccountSubscriptionController;
 use App\Http\Controllers\Account\Subscriptions\SubscriptionCancelController as AccountSubscriptionCancelController;
 use App\Http\Controllers\Account\Subscriptions\SubscriptionResumeController as AccountSubscriptionResumeController;
+use App\Http\Controllers\Account\Subscriptions\SubscriptionSwapController as AccountSubscriptionSwapController;
 use App\Http\Controllers\Account\Subscriptions\SubscriptionInvoiceController as AccountSubscriptionInvoiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,9 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('/resume', [AccountSubscriptionResumeController::class, 'index'])->name('account.subscriptions.resume');
                 Route::post('/resume', [AccountSubscriptionResumeController::class, 'store']);
             });
+
+            Route::get('/swap', [AccountSubscriptionSwapController::class, 'index'])->name('account.subscriptions.swap');
+            Route::post('/swap', [AccountSubscriptionSwapController::class, 'store']);
 
             Route::get('/invoices', [AccountSubscriptionInvoiceController::class, 'index'])->name('account.subscriptions.invoices');
             Route::get('/invoices/{id}', [AccountSubscriptionInvoiceController::class, 'show'])->name('account.subscriptions.invoice');

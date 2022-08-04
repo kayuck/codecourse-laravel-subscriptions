@@ -17,6 +17,7 @@
                 @endcan
             @endif
 
+            <li class="text-indigo-500"><a href="{{ route('account.subscriptions.swap') }}">Swap plan</a></li>
             <li class="text-indigo-500"><a href="{{ route('account.subscriptions.invoices') }}">Invoices</a></li>
         </ul>
     </div>

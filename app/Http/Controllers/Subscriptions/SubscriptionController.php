@@ -19,11 +19,13 @@ class SubscriptionController extends Controller
     {
         $this->validate(
             $request,
-            ['token' => 'required']
+            [
+                'token' => 'required',
+                'plan' => 'required|exists:plans,slug'
+            ]
         );
 
-        $plan = Plan::where('slug', $request->plan)
-            ->orWhere('slug', 'monthly')
+        $plan = Plan::where('slug', $request->get('plan', 'monthly'))
             ->first();
         $request->user()->newSubscription('default', $plan->stripe_id)->create($request->token);
 
