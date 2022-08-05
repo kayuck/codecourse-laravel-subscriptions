@@ -18,6 +18,7 @@
 
                 <li class="text-indigo-500"><a href="{{ route('account.subscriptions.swap') }}">Swap plan</a></li>
                 <li class="text-indigo-500"><a href="{{ route('account.subscriptions.card') }}">Update card</a></li>
+                <li class="text-indigo-500"><a href="{{ route('account.subscriptions.coupon') }}">Apply coupon</a></li>
             @endif
 
             <li class="text-indigo-500"><a href="{{ route('account.subscriptions.invoices') }}">Invoices</a></li>
