@@ -1,12 +1,12 @@
 <form action="{{ $action }}" method="post" id="card-form">
     @csrf
 
-    <div class="form-group">
-        <label for="card-holder-name">Name on card</label>
-        <input type="text" name="name" id="card-holder-name" class="from-control">
+    <div>
+        <label class="mb-2">Name on card</label>
+        <x-input type="text" name="email" id="card-holder-name" class="block w-full mb-4"  />
     </div>
-    <div class="form-group">
-        <label for="name">Card details</label>
+    <div class="mb-4">
+        <label class="mb-2">Card details</label>
         <div id="card-element"></div>
     </div>
 

@@ -21,13 +21,16 @@ class SubscriptionController extends Controller
             $request,
             [
                 'token' => 'required',
+                'coupon' => 'nullable',
                 'plan' => 'required|exists:plans,slug'
             ]
         );
 
         $plan = Plan::where('slug', $request->get('plan', 'monthly'))
             ->first();
-        $request->user()->newSubscription('default', $plan->stripe_id)->create($request->token);
+        $request->user()->newSubscription('default', $plan->stripe_id)
+            ->withCoupon($request->coupon)
+            ->create($request->token);
 
         return back();
     }
