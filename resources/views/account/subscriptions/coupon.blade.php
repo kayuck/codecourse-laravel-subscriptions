@@ -15,7 +15,14 @@
 
                 <div>
                     <label class="mb-2">Coupon</label>
-                    <x-input type="text" name="coupon" id="coupon" class="block w-full mb-4" />
+                    <x-input type="text" name="coupon" id="coupon" class="block w-full mb-4" :value="old('coupon')" />
+
+                    @error('coupon')
+                        <span class="font-semibold text-red-500">
+                            {{ $message }}
+                        </span>
+                    @enderror
+
                 </div>
                 <x-button> {{ __('Apply') }} </x-button>
             </form>
