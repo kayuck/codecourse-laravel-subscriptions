@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Presenters\SubscriptionPresenter;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -62,6 +63,15 @@ class User extends Authenticatable
     public function userPlan()
     {
         return Plan::where('stripe_id', $this->subscriptions()->active()->first()->stripe_price)->first();
+    }
+
+    public function presentSubscription(){
+        if(!$subscription = $this->subscription('default')){
+            return null;
+        }
+
+        return new SubscriptionPresenter($subscription->asStripeSubscription());
+
     }
 
 }

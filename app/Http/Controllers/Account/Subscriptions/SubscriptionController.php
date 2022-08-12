@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
-    public function index(){
-        return view('account.subscriptions.index');
+    public function index(Request $request){
+        return view('account.subscriptions.index',[
+            'subscription' => $request->user()->presentSubscription()
+        ]);
     }
 }
