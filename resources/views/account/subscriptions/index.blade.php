@@ -13,7 +13,12 @@
             @if (auth()->user()->subscribed())
                 @if ($subscription)
                     <ul>
-                        <li>Plan: {{ auth()->user()->userPlan()->title }} ( {{ $subscription->amount() }} / {{ $subscription->interval() }} )</li>
+                        <li>
+                            Plan: {{ auth()->user()->userPlan()->title }} ( {{ money($subscription->amount()) }} / {{ $subscription->interval() }} )
+                            @if (auth()->user()->subscription('default')->cancelled())
+                                Ends {{ $subscription->cancelAt() }}. <a href="{{ route('account.subscriptions.resume') }}">Resume</a>
+                            @endif
+                        </li>
                     </ul>
                 @endif
             @else
