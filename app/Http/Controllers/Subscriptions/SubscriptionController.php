@@ -40,9 +40,10 @@ class SubscriptionController extends Controller
                 ->create($request->token);
         } catch (IncompletePayment $exception) {
             return redirect()->route(
-                'cashier.payment',[
+                'cashier.payment',
+                [
                     $exception->payment->id,
-                    'redirect'=> route('account.subscriptions')
+                    'redirect' => route('account.subscriptions')
                 ]
             );
         }

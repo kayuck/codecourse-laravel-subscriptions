@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -44,9 +45,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /*
+    15. Swapping plans 参照。このやり方だとうまくいかないので、下記 userPlan() を使う。
     public function plan()
     {
-        /*  */
         return $this->hasOneThrough(
             Plan::class,
             Subscription::class,
@@ -56,4 +58,10 @@ class User extends Authenticatable
             'stripe_price' //stripe_plan は stripe_price に変わったらしい
         );
     }
+    */
+    public function userPlan()
+    {
+        return Plan::where('stripe_id', $this->subscriptions()->active()->first()->stripe_price)->first();
+    }
+
 }

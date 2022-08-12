@@ -14,7 +14,7 @@
                 @csrf
 
                 <x-select class="w-full mb-4" name="plan">
-                    @foreach ($plans as $plan)
+                    @foreach ($otherPlans as $plan)
                         <option value="{{ $plan->slug }}">{{ $plan->title }}</option>
                     @endforeach
                 </x-select>
