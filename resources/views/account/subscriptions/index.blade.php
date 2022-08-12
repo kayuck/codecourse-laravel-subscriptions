@@ -10,7 +10,10 @@
             <div class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Subscrition') }}
             </div>
-            Subscrition
+            <div>Subscrition</div>
+            <div>
+                <a href="{{ auth()->user()->billingPortalUrl(route('account.subscriptions')) }}">Billing portal</a>
+            </div>
         </x-slot>
     </x-account>
 </x-app-layout>
