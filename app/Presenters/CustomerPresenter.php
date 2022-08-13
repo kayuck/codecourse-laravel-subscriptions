@@ -2,8 +2,6 @@
 
 namespace App\Presenters;
 
-use Carbon\Carbon;
-
 class CustomerPresenter
 {
     protected $model;

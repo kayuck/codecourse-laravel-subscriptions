@@ -14,16 +14,22 @@
                 <ul>
                     @if ($subscription)
                         <li>
-                            Plan: {{ auth()->user()->userPlan()->title }} ( {{ money($subscription->amount()) }} / {{ $subscription->interval() }} )
+                            Plan: {{ auth()->user()->userPlan()->title }} ( @money($subscription->amount()) / {{ $subscription->interval() }} )
                             @if (auth()->user()->subscription('default')->cancelled())
                                 Ends {{ $subscription->cancelAt() }}. <a href="{{ route('account.subscriptions.resume') }}">Resume</a>
                             @endif
                         </li>
                     @endif
 
+                    @if ($coupon = $subscription->coupon())
+                        <li>
+                            Coupon: {{ $coupon->name() }} ( {{ $coupon->value() }} off )
+                        </li>
+                    @endif
+
                     @if ($invoice)
                         <li>
-                            Next payment: {{ money($invoice->amount()) }} on {{ $invoice->nextPaymentAttempt() }}
+                            Next payment: @money($invoice->amount()) on {{ $invoice->nextPaymentAttempt() }}
                         </li>
                     @endif
 
