@@ -26,6 +26,12 @@
                             Next payment: {{ money($invoice->amount()) }} on {{ $invoice->nextPaymentAttempt() }}
                         </li>
                     @endif
+
+                    @if ($customer)
+                        <li>
+                            Balance: {{ $customer->balance() }}
+                        </li>
+                    @endif
                 </ul>
             @else
                 <p>You don't have a subscription</p>
