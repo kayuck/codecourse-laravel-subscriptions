@@ -37,11 +37,13 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <!-- Authentication -->
-                        <x-dropdown-link :href="route('account.subscriptions')">
-                            {{ __('Subscriptions') }}
-                        </x-dropdown-link>
+                        @if (auth()->user()->subscribed())
+                            <x-dropdown-link :href="route('account.subscriptions')">
+                                {{ __('Subscriptions') }}
+                            </x-dropdown-link>
+                        @endif
 
+                        <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 

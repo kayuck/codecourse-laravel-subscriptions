@@ -19,7 +19,6 @@ class SubscriptionPresenter
 
     public function cancelAt()
     {
-        dd($this->model->plan->created, (new Carbon($this->model->plan->cancel_at))->isoFormat('Y/M/D(ddd)'));
         return (new Carbon($this->model->plan->cancel_at))->isoFormat('Y/M/D(ddd)');
     }
 

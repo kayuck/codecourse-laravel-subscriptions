@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Presenters\InvoicePresenter;
 use App\Presenters\SubscriptionPresenter;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
@@ -71,6 +72,15 @@ class User extends Authenticatable
         }
 
         return new SubscriptionPresenter($subscription->asStripeSubscription());
+
+    }
+
+    public function presentUpcomingInvoice(){
+        if(!$invoice = $this->upcomingInvoice()){
+            return null;
+        }
+
+        return new InvoicePresenter($invoice->asStripeInvoice());
 
     }
 

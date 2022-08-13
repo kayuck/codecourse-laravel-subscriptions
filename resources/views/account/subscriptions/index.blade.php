@@ -11,16 +11,22 @@
                 {{ __('Subscrition') }}
             </div>
             @if (auth()->user()->subscribed())
-                @if ($subscription)
-                    <ul>
+                <ul>
+                    @if ($subscription)
                         <li>
                             Plan: {{ auth()->user()->userPlan()->title }} ( {{ money($subscription->amount()) }} / {{ $subscription->interval() }} )
                             @if (auth()->user()->subscription('default')->cancelled())
                                 Ends {{ $subscription->cancelAt() }}. <a href="{{ route('account.subscriptions.resume') }}">Resume</a>
                             @endif
                         </li>
-                    </ul>
-                @endif
+                    @endif
+
+                    @if ($invoice)
+                        <li>
+                            Next payment: {{ money($invoice->amount()) }} on {{ $invoice->nextPaymentAttempt() }}
+                        </li>
+                    @endif
+                </ul>
             @else
                 <p>You don't have a subscription</p>
             @endif
