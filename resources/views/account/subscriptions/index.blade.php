@@ -16,7 +16,7 @@
                         <li>
                             Plan: {{ auth()->user()->userPlan()->title }} ( @money($subscription->amount()) / {{ $subscription->interval() }} )
                             @if (auth()->user()->subscription('default')->cancelled())
-                                Ends {{ $subscription->cancelAt() }}. <a href="{{ route('account.subscriptions.resume') }}">Resume</a>
+                                Ends {{ $subscription->cancelAt() }}. <a href="{{ route('account.subscriptions.resume') }}" class="text-indigo-500">Resume</a>
                             @endif
                         </li>
                     @endif
@@ -44,7 +44,7 @@
             @endif
 
             <div>
-                <a href="{{ auth()->user()->billingPortalUrl(route('account.subscriptions')) }}">Billing portal</a>
+                <a href="{{ auth()->user()->billingPortalUrl(route('account.subscriptions')) }}" class="text-indigo-500">Billing portal</a>
             </div>
         </x-slot>
     </x-account>
