@@ -14,7 +14,7 @@
                 <div>
                     {{ $invoice->date()->toFormattedDateString() }}
                     {{ $invoice->total() }}
-                    <a href="{{ route('account.subscriptions.invoice', $invoice->id) }}">Download</a>
+                    <a href="{{ route('account.subscriptions.invoice', $invoice->id) }}" class="text-indigo-500">Download</a>
                 </div>
             @endforeach
         </x-slot>

@@ -10,6 +10,7 @@
             <div class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Swap') }}
             </div>
+            Current plan : {{ auth()->user()->userPlan()->title }}
             <form action="{{ route('account.subscriptions.swap') }}" method="post">
                 @csrf
 
