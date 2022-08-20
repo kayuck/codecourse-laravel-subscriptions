@@ -1,8 +1,8 @@
 ## サブスクリプションのための構築です。
 
 # 大前提
-サブスク用なので一回払いはまた違う構成になります。
-demoページ( https://codecourse-laravel-subscriptions.flc.cfbx.jp/ )と下の方にある 使い方 / できること をご参照下さい。
+サブスク用なので一回払いはまた違う構成になります。<br>
+demoページ( https://codecourse-laravel-subscriptions.flc.cfbx.jp/ )と下の方にある 使い方 / できること をご参照下さい。<br>
 あと、講座が英語なので出来上がり品も英語です。実装時は適宜日本語に書き換えてください。
 
 ## stripe補足
@@ -74,6 +74,7 @@ route/web.php 見ながら色々探ってみてください。
 頑張って書きます。
 
 ●●●
+
 https://codecourse-laravel-subscriptions.flc.cfbx.jp/ ご自由に登録ください。なにかの拍子に消えることがあるかも知れません。
 テストカードは https://stripe.com/docs/testing#cards
 4242424242…が、特に意図がないときは便利です。
