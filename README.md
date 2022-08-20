@@ -5,34 +5,6 @@
 demoページ( https://codecourse-laravel-subscriptions.flc.cfbx.jp/ )と下の方にある 使い方 / できること をご参照下さい。
 あと、講座が英語なので出来上がり品も英語です。実装時は適宜日本語に書き換えてください。
 
-## インストール方法
-･controllerやmodel、viewの作り方はcashierの影響を受けないのでやりやすいように作って大丈夫です。
-このリポジトリを既存リポジトリにボーンと上書きしてみて、適宜mregeする…で行ける気がする。
-composer.json であたらしく入ったものを確認の上、
-- composer update
-- composer install
-していただくと、追加で必要なものが入るかと思います。
-･gitのcommitの様子を追っかけてもらってもいいかもです。
-デアゴスティーニ式なのでちょっとまどろっこしいのと、一時期 .lh フォルダというのがいたのですが、これの履歴は無視してください。
-
-## 補足
-### ●Models
-App\Models\User で、Billableをuseしてます。これがcashierを使えるようにする準備です。
-支払い絡みで色々出てくるメソッドの実装や、｢こんな事はできないのかな?｣といったことを確認したいときはこの trait Billable( vendor/laravel/cashier/src/Billable.php ) の中身(さらにいろいろtraitが入ってる)を追っかけるとやりたいことが見つかるかもしれません。
-
-### ●Views
-blade componentで作ってます。
-
-### ●Controllers
-講座を作った人( https://codecourse.com/courses/laravel-subscriptions-platform )の癖なのか、routes/web.php を見るとなにか as 別名にしたりしてややこしいことをやってますが、もっとわかりやすく、この通りにやらなくても大丈夫です。
-
-### ●その他
-･app/Policies/SubscriptionPolicy.php 作って、app/Providers/AuthServiceProvider.php に登録してます
-･app/Http/Middleware/NotSubscribed.php と app/Http/Middleware/Subscribed.php 作って、app/Http/Kernel.php に登録してます。
-･app/Rules/ValidCoupon.php 作ってます。
-･app/Presenters 配下作ってます。 Model Subscription がstripeプラグイン由来のものなので、それを直接ゴニョゴニョするのが気が引けるから。多分…だいぶまとめに入ってて説明がよくわからんかった。
-
-
 ## stripe補足
 stripeを利用しているのでアカウントを作ってください。開発用のテスト環境がデフォルトで存在しますので、無料でテストできます。
 以下すべて｢テスト環境｣で実施する。本番は申請しないと作れないけど。
@@ -93,6 +65,11 @@ php artisan migrate:fresh --seed の操作で stripe_id にすでに何か price
 ## これで準備は完了です。たぶん。
 
 ## 使い方 / できること
+●●●
+以下書きかけです。
+route/web.php 見ながら色々探ってみてください。
+頑張って書きます。
+●●●
 https://codecourse-laravel-subscriptions.flc.cfbx.jp/ ご自由に登録ください。なにかの拍子に消えることがあるかも知れません。
 テストカードは https://stripe.com/docs/testing#cards
 4242424242…が、特に意図がないときは便利です。
@@ -112,6 +89,27 @@ subscriptions テーブルを見ると ends_at に日付が入っています。
 stripe管理画面の｢顧客｣の該当ユーザを開くと｢サブスクリプション｣のところに｢○/○でキャンセル｣という表示があります。
 次回の支払いは発生しません。
 ※webhookを設定しているようなら上記、一旦触らずにおいた 鉛筆、×、… のボタン …ボタンから、｢サブスクリプションをキャンセル｣→現在の期間の終了日→｢サブスクリプションのキャンセル｣が、サイトからのキャンセルと同じ挙動になります。webhook経由でサイトのテーブルも同じようにends_atに日付が入ります。
+
+### ●客がキャンセルしたサブスクを復旧する
+左メニューの Resume subscription を押すとRESUMEボタンがあるので押すと復旧します。
+subscriptions テーブルを見ると ends_at がnullになっています。
+stripe管理画面の｢顧客｣の該当ユーザを開くと｢サブスクリプション｣のところに｢○/○でキャンセル｣という表示がなくなっています。
+
+### ●客が請求書を取得する
+左メニューの Invoices を押すと請求書の一覧があるのでDownloadを押すとダウンロードできます。
+
+### ●客がプランを変更する
+左メニューの Swap plan を押すと、現在のプラン以外のものが入った select があるのでその中から変更できます。
+差額などは計算されるようです。
+※こちらのdemoでは変更に伴う増額、減額など警告がないので一応その辺はなにか挟んだほうがいいかな…と思います。
+※先に大きい金額を払ってて、その後小さい金額に変わるとstripeの中に残高として貯まるようです。これがデフォルトなのか、例えば返金
+
+
+
+左メニューの Resume subscription を押すとRESUMEボタンがあるので押すと復旧します。
+subscriptions テーブルを見ると ends_at がnullになっています。
+stripe管理画面の｢顧客｣の該当ユーザを開くと｢サブスクリプション｣のところに｢○/○でキャンセル｣という表示がなくなっています。
+
 
 テストの都合登録したサブスクを消したいことがあると思いますが、
 
