@@ -66,9 +66,13 @@ php artisan migrate:fresh --seed の操作で stripe_id にすでに何か price
 
 ## 使い方 / できること
 ●●●
+
 以下書きかけです。
+
 route/web.php 見ながら色々探ってみてください。
+
 頑張って書きます。
+
 ●●●
 https://codecourse-laravel-subscriptions.flc.cfbx.jp/ ご自由に登録ください。なにかの拍子に消えることがあるかも知れません。
 テストカードは https://stripe.com/docs/testing#cards
