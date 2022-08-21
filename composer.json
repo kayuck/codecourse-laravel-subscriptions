@@ -9,12 +9,13 @@
         "barryvdh/laravel-debugbar": "^3.6",
         "cknow/laravel-money": "^7.0",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.4.5",
         "laravel/cashier": "^13.11",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "livewire/livewire": "^2.10"
+        "livewire/livewire": "^2.10",
+        "dompdf/dompdf": "2.0.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
